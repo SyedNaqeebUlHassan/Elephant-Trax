@@ -1,10 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-const Button = () => {
+const Button = ({Title}) => {
   return (
     <TouchableOpacity style={styles.buton}>
-        <Text style={styles.Text}>Sign IN</Text>
+        <Text style={styles.Text}>{Title}</Text>
     </TouchableOpacity>
     
   )
@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
         borderRadius:10,   
         justifyContent:'center',
         alignItems:'center',
+        marginTop:20,
     },
     Text:{
         textAlign:'center',

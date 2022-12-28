@@ -1,32 +1,37 @@
-import { StyleSheet, Text, View,Image, TextInput } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View,Image, TextInput, ScrollView,} from 'react-native'
+import React,{useState} from 'react'
 import box from '../assets/box.png'
 import InputField from '../Components/InputField'
 import Email from '../assets/Email.png'
 import Password from '../assets/Password.png'
-import Eye from '../assets/Eye.png'
 import Button from '../Components/Button'
 import SocialLinks from '../Components/SocialLinks'
 import Terms from '../Components/Terms'
-const Login = () => {
+import Background from '../Components/Background'
+import SecureEye from '../assets/SecureEye.png'
+const Login = ({navigation}) => {
+  
   return (
-    <View style={styles.container}>
-          <Image
-          source={box}
-          style={{width:277,height:249}}
-          />
-          <Text style={styles.Text}>SIGN IN</Text>
-          <InputField  placeHolder='Enter your email' image={Email} style={{height:36,width:36}} />
-          <InputField placeHolder='Enter Password' image={Password} image2={Eye} style={{height:22,width:29}} />
-          <Terms/>
-          <Button/>
-          <View style={styles.forgetWrapper}>
-            <Text style={styles.forgetPassword}>Forgot password!</Text>
-          </View>
-          <Text style={styles.or}>OR</Text>
-            <SocialLinks/>
-          <Text style={styles.dontHave}>Don’t have an account! Sign Up</Text>
-    </View>
+      <View style={styles.container}>
+        <ScrollView contentContainerStyle={{flex:1}}>
+              <Image
+              source={box}
+              style={{width:277,height:249,marginLeft:50,marginTop:20,}}
+              />
+              <Text style={styles.Text}>SIGN IN</Text>
+              <InputField  placeHolder='Enter your email' leftImage={Email} styleLeft={{height:36,width:36,marginLeft:-40}} />
+              <InputField placeHolder='Enter Password'  leftImage={Password} rightImage={SecureEye} styleLeft={{height:22,width:29, marginLeft:-40}} styleRight={{ width: 25,height:20.95,
+                marginRight:-40,}} />
+              <Terms/>
+              <Button Title='Sign In'/>
+              <View style={styles.forgetWrapper}>
+                <Text onPress={()=>navigation.navigate("Reset Pass")} style={styles.forgetPassword}>Forgot password!</Text>
+              </View>
+              <Text style={styles.or}>OR</Text>
+                <SocialLinks/>
+              <Text onPress={()=>navigation.navigate('Sign Up')} style={styles.dontHave}>Don’t have an account!<Text style={{textDecorationLine:'underline',fontSize:18,fontWeight:'600'}}>SignUp</Text></Text>
+              </ScrollView>
+      </View>
   )
 }
 
@@ -45,10 +50,12 @@ const styles = StyleSheet.create({
         fontWeight:'700',
         lineHeight:33,
         fontStyle:'normal',
+        textAlign:'center',
     },
     forgetWrapper:{
       alignItems:"flex-end",
       width: 359,
+      marginTop:10
     },
     forgetPassword:{
       fontSize:18,
@@ -63,12 +70,16 @@ const styles = StyleSheet.create({
       lineHeight:24,
       fontWeight:'700',
       fontStyle:'normal',
+      textAlign:'center',
+      marginTop:10,
     },
     dontHave:{
       color:'white',
       fontStyle:'normal',
       fontWeight:'400',
-      fontSize:18,
-      lineHeight:22
+      fontSize:15,
+      lineHeight:22,
+      marginTop:20,
+      textAlign:'center',
     }
 })

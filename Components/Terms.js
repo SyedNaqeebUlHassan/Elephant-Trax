@@ -1,15 +1,18 @@
-import { StyleSheet, Text, View,Image } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View,Image,TouchableOpacity, Pressable } from 'react-native'
+import React,{useState} from 'react'
 import Check from '../assets/Check.png'
 const Terms = () => {
+    const [check,SetCheck]=useState(false);
   return (
     <View style={styles.container}>
-      <View style={styles.checkWraper}>
+      <Pressable style={styles.checkWraper} onPress={()=>SetCheck(!check)}>
+        {check &&
         <Image
-            style={{width:30,height:30}}
+            style={{width:30,height:30,marginBottom:10,tintColor:'white'}}
             source={Check}
         />
-      </View>
+        }
+      </Pressable>
       <Text style={styles.text}>I have accept term & conditions</Text>
     </View>
   )
@@ -20,10 +23,11 @@ export default Terms
 const styles = StyleSheet.create({
     container:{
         flexDirection:'row',
-        justifyContent:'space-between',
+        justifyContent:'center',
         alignItems:'center',
-        backgroundColor:'red',
-        width:300
+        width:300,
+        marginTop:20,
+
     },
     checkWraper:{
         alignItems:'center',
@@ -36,5 +40,10 @@ const styles = StyleSheet.create({
     },
     text:{
         color:"white",
+        fontStyle:'normal',
+        fontWeight:'400',
+        fontSize:16,
+        lineHeight:19,
+        marginLeft:20,
     }
 })
