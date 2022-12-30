@@ -3,11 +3,11 @@ import React from 'react';
 
 import Bell from '../assets/Bell.png';
 import Admin from '../assets/Admin.png'
-const Header = ({leftImage,leftImageStyle,arrowNavigate}) => {
+const Header = ({leftImage,leftImageStyle,navigationBack,navigateTo}) => {
   return (
     <View style={styles.container}>
         <View style={styles.Humburger}>
-            <TouchableOpacity onPress={arrowNavigate}>
+            <TouchableOpacity onPress={navigationBack}>
                 <Image
                 source={leftImage}
                 style={leftImageStyle}
@@ -19,10 +19,12 @@ const Header = ({leftImage,leftImageStyle,arrowNavigate}) => {
             source={Bell}
             style={styles.Bell}
             />
-            <Image
-            source={Admin}
-            style={styles.Admin}
-            />
+            <TouchableOpacity onPress={navigateTo}>
+                <Image
+                source={Admin}
+                style={styles.Admin}
+                />
+            </TouchableOpacity>
         </View> 
     </View>
   )
@@ -38,6 +40,7 @@ const styles = StyleSheet.create({
         paddingLeft:35,
         paddingRight:35,
         marginTop:50,
+        width:440,
     },
     Humburger:{
 

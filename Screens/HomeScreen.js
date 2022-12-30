@@ -10,25 +10,25 @@ import Carde from '../assets/Carde.png'
 import CardImage from '../assets/Cardimage.png'
 import Humburger from '../assets/HumbBurrger.png';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
         <ScrollView style={{flex:1}} >
                 <ImageBackground style={{flexGrow:1}} source={BackgroundImage}>
-                    <View >
-                         <Header leftImage={Humburger} leftImageStyle={styles.HumImage}/>   
+                    <View style={styles.componentWraper}>
+                           <Header leftImage={Humburger} leftImageStyle={styles.HumImage} navigateTo={()=>navigation.navigate('Profile')} />   
                          <Image
                          source={DeliveryBoyWithPackage}
-                         style={{width:240,height:251,position:'absolute',marginLeft:60,marginTop:20}}
+                         style={styles.deliveryBoyWithPackage}
                          />
-                         <View style={{width:176,height:56,marginLeft:170,marginTop:10}}>
-                            <Text style={{fontStyle:'normal',fontWeight:'600',fontSize:24,lineHeight:28,color:'white'}}>Here are the Tageline of App</Text>
+                         <View style={styles.taglineView}>
+                            <Text style={styles.taglineText}>Here are the Tageline of App</Text>
                          </View>
                          <View style={{marginTop:60}}>
-                               <Card image={Box} imageStyle={styles.box} title="Create Your Package" backgroundImage={CardImage}/>
+                               <Card image={Box} imageStyle={styles.box} title="Create Your Package" backgroundImage={CardImage} Navigation={()=>navigation.navigate('Create Package')} />
                          </View>
                          <View style={{marginTop:20,paddingBottom:100}}>
-                            <Card image ={Boy} imageStyle={styles.boy} title="Find" backgroundImage={Carde}/>
+                            <Card image ={Boy} imageStyle={styles.boy} title="Find" backgroundImage={Carde} Navigation={()=>navigation.navigate("Find")}/>
                          </View>
                     </View>
                 </ImageBackground>
@@ -57,5 +57,28 @@ const styles = StyleSheet.create({
     HumImage:{
       width:24,
       height:20
+    },
+  componentWraper:{
+    alignItems:'center',
   },
+  deliveryBoyWithPackage:{
+    width:240,
+    height:251,
+    position:'absolute'
+    ,marginLeft:60,
+    marginTop:20
+  },
+  taglineView:{
+    width:176,
+    height:56,
+    marginLeft:170,
+    marginTop:10
+  },
+  taglineText:{
+    fontStyle:'normal',
+    fontWeight:'600',
+    fontSize:24,
+    lineHeight:28,
+    color:'white'
+  }
 })

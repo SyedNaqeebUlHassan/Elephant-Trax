@@ -20,7 +20,7 @@ const Login = ({navigation}) => {
               />
               <Text style={styles.Text}>SIGN IN</Text>
               <InputField  placeHolder='Enter your email' leftImage={Email} styleLeft={{height:36,width:36,marginLeft:-40}} />
-              <InputField placeHolder='Enter Password'  leftImage={Password} rightImage={SecureEye} styleLeft={{height:22,width:29, marginLeft:-40}} styleRight={{ width: 25,height:20.95,
+              <InputField secureEntry={true} placeHolder='Enter Password'  leftImage={Password} rightImage={SecureEye} styleLeft={{height:22,width:29, marginLeft:-40}} styleRight={{ width: 25,height:20.95,
                 marginRight:-40,}} />
               <Terms/>
               <Button Title='Sign In'/>

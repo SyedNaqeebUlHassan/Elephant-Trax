@@ -7,6 +7,10 @@ import Home from './Screens/HomeScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CreatePackageScreen from './Screens/CreatePackageScreen';
+import SavePackageScreen from './Screens/SavePackageScreen';
+import AddItemScreen from './Screens/AddItemScreen';
+import ProfileScreen from './Screens/ProfileScreen';
+import FindScreen from './Screens/FindScreen';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -18,9 +22,13 @@ export default function App() {
         <Stack.Screen name="Reset Pass" component={ResetPassScreen}/>
         <Stack.Screen name="Home" component={Home}/>
         <Stack.Screen name="Create Package" component={CreatePackageScreen}/>
-      </Stack.Navigator>
+        <Stack.Screen name="Save Package" component={SavePackageScreen}/>
+        <Stack.Screen name="Add Item" component={AddItemScreen}/>
+        <Stack.Screen name="Profile" component={ProfileScreen}/>
+        <Stack.Screen name='Find' component={FindScreen}/>
+      </Stack.Navigator> 
     </NavigationContainer>
-    
+   
   );
 }
 

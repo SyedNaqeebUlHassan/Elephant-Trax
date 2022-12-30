@@ -1,16 +1,16 @@
 import { ImageBackground, StyleSheet, Text, View,Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Button from './Button'
-const Card = ({image,imageStyle,title,backgroundImage}) => {
+const Card = ({image,imageStyle,title,backgroundImage,Navigation}) => {
   return (
-    <View style={{marginLeft:16}}> 
+    <View > 
         <ImageBackground source={backgroundImage} style={styles.container}>
             <View>
                 <Image
                     source={image}
                     style={imageStyle}
                 />
-               <Button Title={title} style={styles.button}/>
+               <Button Title={title} style={styles.button} Navigation={Navigation}/>
             </View>
         </ImageBackground> 
     </View>

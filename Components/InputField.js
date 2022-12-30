@@ -2,15 +2,22 @@ import { StyleSheet, Text, TextInput, View,Image, Pressable } from 'react-native
 import React,{useState} from 'react'
 import Eye from '../assets/Eye.png'
 
-const InputField = ({leftImage,rightImage,placeHolder,styleLeft,styleRight}) => {
-  const [secure,SetSecure]=useState(true);
+const InputField = ({leftImage,rightImage,placeHolder,styleLeft,styleRight,secureEntry}) => {
+  const [secure,SetSecure]=useState(false);
   const [image,SetImage] =useState(false);
   const [secureImage,SetSecureImage] =useState(true);
 
   const handlePress=()=>{
+    if(secureEntry===true)
+    {
+
       SetSecure(!secure);
       SetImage(!image);
       SetSecureImage(!secureImage);
+    }
+    else {
+      SetSecure(false)
+    }
 
   }
   return (

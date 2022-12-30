@@ -14,10 +14,10 @@ const CreatePackageScreen = ({navigation}) => {
     <View style={styles.container}>
         <ScrollView style={{flex:1}} contentContainerStyle={{flex:1}} >
             <ImageBackground style={{flexGrow:1}} source={BackgroundImage}>
-                <View>
-                    <Header leftImage={Arrow} leftImageStyle={styles.arrow} arrowNavigate={()=>navigation.goBack()}/>
+                <View style={styles.componentWrapper}>
+                    <Header leftImage={Arrow} leftImageStyle={styles.arrow} navigationBack={()=>navigation.goBack()} navigateTo={()=>navigation.navigate("Profile")}/>
                     <Text style={styles.createPackage}>Create Your Package</Text>
-                    <PackageCard backgroundImageStyle={styles.backgroundImage} headerRightImage={Category} headerRightImageStyle={styles.leftImage} coverImage={Product} coverImageStyle={styles.productImage} fotterImage={Location} fotterImageStyle={styles.locationImage} fotterGroupImage={GroupImage} fotterGroupImageStyle={styles.groupImage} titleLeftButton="Create" titleRightButton="Add Items"/>
+                    <PackageCard addItemNavigation={()=>navigation.navigate("Add Item")} backgroundImageStyle={styles.backgroundImage} headerRightImage={Category} headerRightImageStyle={styles.leftImage} coverImage={Product} coverImageStyle={styles.productImage} fotterImage={Location} fotterImageStyle={styles.locationImage} fotterGroupImage={GroupImage} fotterGroupImageStyle={styles.groupImage} titleLeftButton="Create" titleRightButton="Add Items"/>
                 </View>
             </ImageBackground>
         </ScrollView>
@@ -30,6 +30,9 @@ export default CreatePackageScreen
 const styles = StyleSheet.create({
     container:{
         flex:1,
+    },
+    componentWrapper:{
+        alignItems:'center',
     },
     arrow:{
         width:28,

@@ -3,14 +3,16 @@ import React from 'react'
 import Carde from '../assets/Carde.png'
 import Button from './Button'
 
-const PackageCard = ({backgroundImageStyle,headerLeftImage,headerLeftImageStyle,headerRightImage,headerRightImageStyle,coverImage,coverImageStyle,fotterImage,fotterImageStyle,fotterGroupImage,fotterGroupImageStyle,titleLeftButton,titleRightButton}) => {
+const PackageCard = ({addItemNavigation,backgroundImageStyle,headerLeftImage,headerLeftImageStyle,headerRightImage,headerRightImageStyle,coverImage,coverImageStyle,fotterImage,fotterImageStyle,fotterGroupImage,fotterGroupImageStyle,titleLeftButton,titleRightButton}) => {
   return (
     <View style={{marginLeft:18,marginTop:24}}>
         <ImageBackground source={Carde} style={backgroundImageStyle}>
-            <Image
-                source={headerLeftImage}
-                style={headerLeftImageStyle}
-            />
+            <View style={{alignItems:'flex-start',marginLeft:14}}>
+                <Image
+                    source={headerLeftImage}
+                    style={headerLeftImageStyle}
+                />
+            </View>
             <View style={{alignItems:'flex-end',marginRight:12}}>
                 <Image
                 source={headerRightImage}
@@ -39,7 +41,7 @@ const PackageCard = ({backgroundImageStyle,headerLeftImage,headerLeftImageStyle,
         </ImageBackground>
         <View style={styles.btnGroup}>
             <Button Title={titleLeftButton} style={styles.button}/>
-            <Button Title={titleRightButton} style={styles.button}/>
+            <Button Navigation={addItemNavigation} Title={titleRightButton} style={styles.button}/>
         </View>
     </View>
   )
