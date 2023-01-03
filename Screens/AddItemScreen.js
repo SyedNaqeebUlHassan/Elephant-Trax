@@ -7,6 +7,7 @@ import SaveItemCard from '../Components/SaveItemCard'
 import ProductIcon from '../assets/ProductIcon.png'
 import Button from '../Components/Button'
 
+
 const AddItemScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
@@ -16,7 +17,6 @@ const AddItemScreen = ({navigation}) => {
                             <Header navigationBack={()=>navigation.goBack()} leftImage={Arrow} leftImageStyle={styles.arrow} navigateTo={()=>navigation.navigate("Profile")}/>
                             <Text style={styles.createPackage}>Add Your Items</Text>
                             <SaveItemCard productImage={ProductIcon} productImageStyle={styles.productImage}/>
-                            <Button Title="Save" style={styles.button} />
                         </View>
                 </ImageBackground>
         </ScrollView>
@@ -55,14 +55,5 @@ const styles = StyleSheet.create({
         marginTop:10,
         marginRight:10,
     },
-    button:{
-        backgroundColor:'#FFDE77',
-        width: 359,
-        height: 65,
-        borderRadius:10,   
-        justifyContent:'center',
-        alignItems:'center',
-        marginTop:200,
 
-    }
 })

@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 export const item=createSlice({
     name:'item',
-    initialState:[],
+    initialState:[{key:1,img:'adas',keyWord:''}],
     reducers:{
         addItem:(state,action)=>{
             const newItem={
                 key:Math.random(),
-                image:action.payload.newImage
+                img:action.payload.newImage,
+                keyWord:action.payload.newKeyWord
             }
             state.push(newItem);
         },

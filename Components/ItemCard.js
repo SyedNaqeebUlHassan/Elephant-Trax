@@ -4,7 +4,7 @@ import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
 
 
-const ItemCard = ({leftImageStyle,leftImage,LinerEnd,LinerStart, LinerLocation,linerColors, backGroundImageStyle,productImage,productImageStyle,rightImage,rightImageStyle,locationImage,locationImageStyle,locationText}) => {
+const ItemCard = ({keyWord,leftImageStyle,leftImage,LinerEnd,LinerStart, LinerLocation,linerColors, backGroundImageStyle,productImage,productImageStyle,rightImage,rightImageStyle,locationImage,locationImageStyle,locationText}) => {
   return (
     <View style={{marginTop:17,marginBottom:0,marginLeft:30}}>
         <LinearGradient  
@@ -38,10 +38,7 @@ const ItemCard = ({leftImageStyle,leftImage,LinerEnd,LinerStart, LinerLocation,l
                 <Text>{locationText}</Text>
             </View>
             <View style={styles.keywordView}>
-                <Text>Keyword</Text>
-            </View>
-            <View style={styles.keywordView1}>
-                <Text>Keyword</Text>
+                <Text>{keyWord}</Text>
             </View>
         </LinearGradient>
     </View>

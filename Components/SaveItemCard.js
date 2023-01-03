@@ -29,7 +29,8 @@ const SaveItemCard = ({productImage,productImageStyle}) => {
               SetImage(result.assets);
           }
           SetImageData((prevState)=>[{image:result.assets,key:Math.random()},...prevState]);
-          console.log(dataImage);
+          SetImage(result.assets)
+          
       }
       
     const cameraImage=async()=>{
@@ -43,6 +44,8 @@ const SaveItemCard = ({productImage,productImageStyle}) => {
               SetImage(result.assets);
           }
           SetImageData((prevState)=>[{image:result.assets,key:Math.random()},...prevState]);
+          SetImage(result.assets)
+
     }
 
     const handleDelte=(key)=>{
@@ -57,11 +60,15 @@ const SaveItemCard = ({productImage,productImageStyle}) => {
     const handleKeyWord=()=>{
         SetKeyWordData((prevState)=>[{keyWord:keyWord,key:Math.random()},...prevState])
     }
-    dispatch(
-        addItem({
-            newImage:dataImage
-        })
-    )
+
+    const handleReduxData=()=>{
+        dispatch(
+            addItem({
+                newImage:image,
+                newKeyWord:keyWord,
+            })
+        )
+    }
 
   return (
     <View style={styles.container}>
@@ -118,6 +125,8 @@ const SaveItemCard = ({productImage,productImageStyle}) => {
                 </ScrollView>
             </View>
         </LinearGradient>
+        <Button Title="Save" style={styles.button1} Navigation={handleReduxData} />
+
     </View>
   )
 }
@@ -217,5 +226,15 @@ const styles = StyleSheet.create({
         fontWeight:'400',
         fontSize:10,
         lineHeight:12
+    },
+    button1:{
+        backgroundColor:'#FFDE77',
+        width: 359,
+        height: 65,
+        borderRadius:10,   
+        justifyContent:'center',
+        alignItems:'center',
+        marginTop:200,
+
     }
 })
