@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View,Image,TouchableOpacity, Pressable } from 'react-native'
 import React,{useState} from 'react'
 import Check from '../assets/Check.png'
-const Terms = () => {
+const Terms = ({navigation}) => {
     const [check,SetCheck]=useState(false);
   return (
     <View style={styles.container}>
@@ -13,7 +13,9 @@ const Terms = () => {
         />
         }
       </Pressable>
-      <Text style={styles.text}>I have accept term & conditions</Text>
+      <Pressable onPress={navigation}>
+        <Text style={styles.text}>I have accept term & conditions</Text>
+      </Pressable>
     </View>
   )
 }

@@ -47,8 +47,13 @@ const styles = StyleSheet.create({
         height:28,
     },
     productImage:{
-        width:264,
-        height:171
+        width:70,
+        height:70,
+        borderRadius:5,
+        marginLeft:10,
+        marginTop:0,
+        marginTop:10,
+        marginRight:10,
     },
     button:{
         backgroundColor:'#FFDE77',

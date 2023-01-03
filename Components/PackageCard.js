@@ -1,12 +1,17 @@
-import { ImageBackground, StyleSheet, Text, View,Image } from 'react-native'
+import {  StyleSheet, Text, View,Image } from 'react-native'
 import React from 'react'
-import Carde from '../assets/Carde.png'
-import Button from './Button'
 
-const PackageCard = ({addItemNavigation,backgroundImageStyle,headerLeftImage,headerLeftImageStyle,headerRightImage,headerRightImageStyle,coverImage,coverImageStyle,fotterImage,fotterImageStyle,fotterGroupImage,fotterGroupImageStyle,titleLeftButton,titleRightButton}) => {
+import { LinearGradient } from 'expo-linear-gradient';
+
+const PackageCard = ({FoterImage,FooterText,LinerGradientStart,LinerGradientEnd,LinearGradientLocation, LinerGradientColors,backgroundImageStyle,headerLeftImage,headerLeftImageStyle,headerRightImage,headerRightImageStyle,coverImage,coverImageStyle,fotterImage,fotterImageStyle,fotterGroupImage,fotterGroupImageStyle}) => {
   return (
-    <View style={{marginLeft:18,marginTop:24}}>
-        <ImageBackground source={Carde} style={backgroundImageStyle}>
+    <View style={{marginTop:24}}>
+        <LinearGradient 
+             colors={LinerGradientColors}
+             start={LinerGradientStart}
+             end={LinerGradientEnd}
+             locations={LinearGradientLocation}
+             style={backgroundImageStyle}>
             <View style={{alignItems:'flex-start',marginLeft:14}}>
                 <Image
                     source={headerLeftImage}
@@ -38,11 +43,15 @@ const PackageCard = ({addItemNavigation,backgroundImageStyle,headerLeftImage,hea
                     style={fotterGroupImageStyle}
                 />
             </View>
-        </ImageBackground>
-        <View style={styles.btnGroup}>
-            <Button Title={titleLeftButton} style={styles.button}/>
-            <Button Navigation={addItemNavigation} Title={titleRightButton} style={styles.button}/>
-        </View>
+            <View style={styles.foterView}>
+                <Text style={styles.fotterText}>{FooterText}</Text>
+                <Image
+                    source={FoterImage}
+                    style={styles.foterImage}
+                
+                />
+            </View>
+        </LinearGradient>
     </View>
   )
 }
@@ -56,17 +65,22 @@ const styles = StyleSheet.create({
         fontSize:20,
         marginTop:18,
     },
-    button:{
-        width:172,
-        height:51,
-        backgroundColor:'#FFDE77',
-        borderRadius:5,   
-        justifyContent:'center',
-        alignItems:'center',
-        marginRight:15,
+    fotterText:{
+        fontWeight:'400',
+        fontSize:12,
+        lineHeight:14,
+        fontStyle:'normal',
+
     },
-    btnGroup:{
+    foterImage:{
+        width:9,
+        height:9,
+    },
+    foterView:{
         flexDirection:'row',
-        marginTop:23,
+        alignItems:'center',
+        justifyContent:'center',
+        marginTop:20,
     }
+
 })

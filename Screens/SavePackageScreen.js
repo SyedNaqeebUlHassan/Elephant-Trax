@@ -18,10 +18,10 @@ const SavePackageScreen = () => {
     <View style={styles.container}>
         <ScrollView style={{flex:1}}  >
             <ImageBackground style={{flexGrow:1}} source={BackgroundImage}>
-                <View>
+                <View style={styles.ComponentWraper}>
                         <Header leftImage={Arrow} leftImageStyle={styles.arrow}/>
                         <Text style={styles.createPackage}>Create Your Package</Text>
-                        <PackageCard backgroundImageStyle={styles.backgroundImage} headerLeftImage={DeleteIcon} headerLeftImageStyle={styles.deleteIcon} headerRightImage={Category} headerRightImageStyle={styles.leftImage} coverImage={Product} coverImageStyle={styles.productImage} fotterImage={Location} fotterImageStyle={styles.locationImage} fotterGroupImage={GroupImage} fotterGroupImageStyle={styles.groupImage} titleLeftButton="Save" titleRightButton="Add Items"/>
+                        <PackageCard LinerGradientStart={[0,0]} LinerGradientEnd={[1,1]} LinearGradientLocation={[0,1]} LinerGradientColors={['#ffffffcc','#f3eef766']} backgroundImageStyle={styles.backgroundImage} headerLeftImage={DeleteIcon} headerLeftImageStyle={styles.deleteIcon} headerRightImage={Category} headerRightImageStyle={styles.leftImage} coverImage={Product} coverImageStyle={styles.productImage} fotterImage={Location} fotterImageStyle={styles.locationImage} fotterGroupImage={GroupImage} fotterGroupImageStyle={styles.groupImage} titleLeftButton="Save" titleRightButton="Add Items"/>
                         <View style={styles.seeAllContainer}>
                             <Text style={styles.seeAllText}>See All</Text>
                             <Image
@@ -29,9 +29,9 @@ const SavePackageScreen = () => {
                                 style={styles.deleteIcon}
                             />    
                         </View> 
-                        <ItemCard backGroundImageStyle={styles.backgroundImageItem} productImage={Car} productImageStyle={styles.carImage} rightImage={Edit} rightImageStyle={styles.editImage} /> 
+                        <ItemCard LinerLocation={[0,1]} linerColors={['#ffffffcc','#f3eef766']} LinerStart={[0,0]} LinerEnd={[1,1]} backGroundImageStyle={styles.backgroundImageItem} productImage={Car} productImageStyle={styles.carImage} rightImage={Edit} rightImageStyle={styles.editImage} /> 
                         <View style={{paddingBottom:100}}>
-                            <ItemCard backGroundImageStyle={styles.backgroundImageItem} productImage={Product} productImageStyle={styles.carImage} rightImage={Edit} rightImageStyle={styles.editImage} />               
+                            <ItemCard LinerLocation={[0,1]} linerColors={['#ffffffcc','#f3eef766']} LinerStart={[0,0]} LinerEnd={[1,1]} backGroundImageStyle={styles.backgroundImageItem} productImage={Product} productImageStyle={styles.carImage} rightImage={Edit} rightImageStyle={styles.editImage} />               
                         </View>
                 </View>
             </ImageBackground>
@@ -45,6 +45,9 @@ export default SavePackageScreen
 const styles = StyleSheet.create({
     container:{
         flex:1,
+    },
+    ComponentWraper:{
+        alignItems:'center',
     },
     arrow:{
         width:28,
@@ -62,6 +65,7 @@ const styles = StyleSheet.create({
     backgroundImage:{
         width:357,
         height:460,
+        borderRadius:10
     },
     leftImage:{
         width:93,
@@ -97,6 +101,7 @@ const styles = StyleSheet.create({
         fontSize:16,
         lineHeight:19,
         marginRight:40,
+        marginLeft:284,
     },
     seeAllContainer:{
         flexDirection:'row',
@@ -108,6 +113,8 @@ const styles = StyleSheet.create({
     backgroundImageItem:{
         width:342,
         height:103, 
+        borderRadius:10,
+        marginRight:20,
     },
     carImage:{
         width:76,

@@ -17,7 +17,7 @@ const ResetPassScreen = ({navigation}) => {
                             <Heading Heading="Reset Your Password"/>
                             <Title />
                             <InputField placeHolder='Enter your email' leftImage={Email} styleLeft={{height:36,width:36,marginLeft:-40}} />
-                            <Button Title='Send Email'/>
+                            <Button Title='Send Email' style={styles.button}/>
                          </View>
                     </ImageBackground>
                 </ScrollView>
@@ -31,5 +31,13 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
     },
- 
+    button:{
+        backgroundColor:'#FFDE77',
+        width: 359,
+        height: 65,
+        borderRadius:10,   
+        justifyContent:'center',
+        alignItems:'center',
+        marginTop:20,
+      }
 })

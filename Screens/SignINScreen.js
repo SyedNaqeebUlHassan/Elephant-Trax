@@ -28,7 +28,7 @@ const SignINScreen = ({navigation}) => {
           <InputField  placeHolder='Enter your email' leftImage={Email} styleLeft={{height:36,width:36,marginLeft:-40}} />
           <InputField placeHolder='Enter Password' leftImage={Password} rightImage={SecureEye} styleLeft={{height:22,width:29, marginLeft:-40}} styleRight={{ width: 25,
       height: 20.95,marginRight:-40,}} />
-          <Button Title='Sign Up'/>
+          <Button Title='Sign Up' style={styles.button}/>
           <View style={styles.forgetWrapper}>
               <Text onPress={()=>navigation.navigate("Reset Pass")}  style={styles.forgetPassword}>Forgot password!</Text>
           </View>
@@ -86,5 +86,14 @@ const styles = StyleSheet.create({
       lineHeight:22,
       marginTop:20,
       textAlign:'center',
+    },
+    button:{
+      backgroundColor:'#FFDE77',
+      width: 359,
+      height: 65,
+      borderRadius:10,   
+      justifyContent:'center',
+      alignItems:'center',
+      marginTop:20,
     }
 })

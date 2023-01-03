@@ -11,24 +11,32 @@ import SavePackageScreen from './Screens/SavePackageScreen';
 import AddItemScreen from './Screens/AddItemScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import FindScreen from './Screens/FindScreen';
+import PrivacyPolicyScreen from './Screens/PrivacyPolicyScreen';
+import { Provider } from 'react-redux'
+import { store } from './Redux/store';
+
 
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home' screenOptions={{headerShown:false}}>
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Sign Up" component={SignINScreen}/>
-        <Stack.Screen name="Reset Pass" component={ResetPassScreen}/>
-        <Stack.Screen name="Home" component={Home}/>
-        <Stack.Screen name="Create Package" component={CreatePackageScreen}/>
-        <Stack.Screen name="Save Package" component={SavePackageScreen}/>
-        <Stack.Screen name="Add Item" component={AddItemScreen}/>
-        <Stack.Screen name="Profile" component={ProfileScreen}/>
-        <Stack.Screen name='Find' component={FindScreen}/>
-      </Stack.Navigator> 
-    </NavigationContainer>
-   
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='Login' screenOptions={{headerShown:false}}>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Sign Up" component={SignINScreen}/>
+          <Stack.Screen name="Reset Pass" component={ResetPassScreen}/>
+          <Stack.Screen name="Home" component={Home}/>
+          <Stack.Screen name="Create Package" component={CreatePackageScreen}/>
+          <Stack.Screen name="Save Package" component={SavePackageScreen}/>
+          <Stack.Screen name="Add Item" component={AddItemScreen}/>
+          <Stack.Screen name="Profile" component={ProfileScreen}/>
+          <Stack.Screen name='Find' component={FindScreen}/>
+          <Stack.Screen name='Privacy' component={PrivacyPolicyScreen}/>
+        </Stack.Navigator> 
+      </NavigationContainer>
+    </Provider>
+
+
   );
 }
 

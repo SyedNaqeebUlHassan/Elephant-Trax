@@ -1,12 +1,18 @@
 import { ImageBackground, StyleSheet, Text, View,Image } from 'react-native'
 import React from 'react'
-import Carde from '../assets/Carde.png'
+
+import { LinearGradient } from 'expo-linear-gradient'
 
 
-const ItemCard = ({backGroundImageStyle,productImage,productImageStyle,rightImage,rightImageStyle,locationImage,locationImageStyle,locationText}) => {
+const ItemCard = ({leftImageStyle,leftImage,LinerEnd,LinerStart, LinerLocation,linerColors, backGroundImageStyle,productImage,productImageStyle,rightImage,rightImageStyle,locationImage,locationImageStyle,locationText}) => {
   return (
     <View style={{marginTop:17,marginBottom:0,marginLeft:30}}>
-        <ImageBackground source={Carde} style={backGroundImageStyle}>
+        <LinearGradient  
+        colors={linerColors} 
+        start={LinerStart}
+        LinerEnd={LinerEnd}
+        locations={LinerLocation}
+        style={backGroundImageStyle}>       
             <View style={{marginLeft:-13,marginTop:13}}>
                 <Image
                     source={productImage}
@@ -19,6 +25,10 @@ const ItemCard = ({backGroundImageStyle,productImage,productImageStyle,rightImag
                     source={rightImage}
                     style={rightImageStyle}
                     />
+                <Image
+                    source={leftImage}
+                    style={leftImageStyle}
+                />
             </View>
             <View>
                 <Image
@@ -33,7 +43,7 @@ const ItemCard = ({backGroundImageStyle,productImage,productImageStyle,rightImag
             <View style={styles.keywordView1}>
                 <Text>Keyword</Text>
             </View>
-        </ImageBackground>
+        </LinearGradient>
     </View>
   )
 }

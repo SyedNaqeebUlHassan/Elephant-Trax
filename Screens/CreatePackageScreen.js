@@ -5,9 +5,10 @@ import Header from '../Components/Header'
 import Arrow from '../assets/Arrow.png'
 import PackageCard from '../Components/PackageCard'
 import Category from '../assets/Category.png'
-import Product from '../assets/Product1.png'
 import Location from '../assets/Location.png'
 import GroupImage from '../assets/GroupImage.png'
+import Button from '../Components/Button'
+import Product from '../assets/Product1.png'
 
 const CreatePackageScreen = ({navigation}) => {
   return (
@@ -17,7 +18,11 @@ const CreatePackageScreen = ({navigation}) => {
                 <View style={styles.componentWrapper}>
                     <Header leftImage={Arrow} leftImageStyle={styles.arrow} navigationBack={()=>navigation.goBack()} navigateTo={()=>navigation.navigate("Profile")}/>
                     <Text style={styles.createPackage}>Create Your Package</Text>
-                    <PackageCard addItemNavigation={()=>navigation.navigate("Add Item")} backgroundImageStyle={styles.backgroundImage} headerRightImage={Category} headerRightImageStyle={styles.leftImage} coverImage={Product} coverImageStyle={styles.productImage} fotterImage={Location} fotterImageStyle={styles.locationImage} fotterGroupImage={GroupImage} fotterGroupImageStyle={styles.groupImage} titleLeftButton="Create" titleRightButton="Add Items"/>
+                    <PackageCard LinerGradientStart={[0,0]} LinerGradientEnd={[1,1]} LinearGradientLocation={[0,1]} LinerGradientColors={['#ffffffcc','#f3eef766']}  backgroundImageStyle={styles.backgroundImage} headerRightImage={Category} headerRightImageStyle={styles.leftImage} coverImage={Product} coverImageStyle={styles.productImage} fotterImage={Location} fotterImageStyle={styles.locationImage} fotterGroupImage={GroupImage} fotterGroupImageStyle={styles.groupImage} />
+                    <View style={styles.btnGroup}>
+                        <Button Title="Create" style={styles.button}/>
+                        <Button Navigation={()=>navigation.navigate("Add Item")} Title="Add Items" style={styles.button}/>
+                     </View>
                 </View>
             </ImageBackground>
         </ScrollView>
@@ -50,6 +55,9 @@ const styles = StyleSheet.create({
     backgroundImage:{
         width:357,
         height:460,
+        borderColor:'#FFFFFF',
+        borderRadius:10,
+        borderWidth:2,
     },
     leftImage:{
         width:93,
@@ -71,5 +79,20 @@ const styles = StyleSheet.create({
         height:42.7,
         marginTop:13,
 
+    },
+    button:{
+        width:172,
+        height:51,
+        backgroundColor:'#FFDE77',
+        borderRadius:5,   
+        justifyContent:'center',
+        alignItems:'center',
+        marginRight:15,
+    },
+    btnGroup:{
+        flexDirection:'row',
+        marginTop:23,
+        alignItems:'center',
+        marginLeft:15,
     }
 })

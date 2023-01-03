@@ -1,44 +1,123 @@
-import { Image, ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native'
-import React from 'react'
+import { Image, ImageBackground, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react'
 import Carde from '../assets/Carde.png'
 import AttachIcon from '../assets/AttachIcon.png'
 import Camera from '../assets/Camera.png'
 import Button from '../Components/Button'
+import { LinearGradient } from 'expo-linear-gradient'
+import * as ImagePicker from 'expo-image-picker';
+import { useDispatch } from 'react-redux'
+import { addItem } from '../Redux/ItemSlider';
 
 const SaveItemCard = ({productImage,productImageStyle}) => {
+
+    const dispatch=useDispatch();
+
+    const[keyWord,SetKeyWord]=useState('');
+    const [image,SetImage]=useState('');
+    const[dataImage,SetImageData]=useState([{image}])
+    const[keyWordData,SetKeyWordData]=useState([{keyWord:"KeyWord"}]);
+
+    const pickImage =async() => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+        });
+          if(!result.canceled){
+              SetImage(result.assets);
+          }
+          SetImageData((prevState)=>[{image:result.assets,key:Math.random()},...prevState]);
+          console.log(dataImage);
+      }
+      
+    const cameraImage=async()=>{
+          let result = await ImagePicker.launchCameraAsync({
+          mediaTypes: ImagePicker.launchCameraAsync.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+        });
+          if(!result.canceled){
+              SetImage(result.assets);
+          }
+          SetImageData((prevState)=>[{image:result.assets,key:Math.random()},...prevState]);
+    }
+
+    const handleDelte=(key)=>{
+        SetImageData((prevState)=>{
+            return prevState.filter((item)=>item.key!==key)
+        })
+        SetKeyWordData((prevState)=>{
+            return prevState.filter((item)=>item.key!==key)
+        })
+    }
+
+    const handleKeyWord=()=>{
+        SetKeyWordData((prevState)=>[{keyWord:keyWord,key:Math.random()},...prevState])
+    }
+    dispatch(
+        addItem({
+            newImage:dataImage
+        })
+    )
+
   return (
     <View style={styles.container}>
-        <ImageBackground source={Carde} style={styles.backgroundImage}>
+        <LinearGradient 
+        colors={['#ffffffcc','#f3eef766']}
+        start={[0,0]}
+        end={[1,1]}
+        locations={[0,1]}
+        style={styles.backgroundImage}>
             <View style={styles.header}>
                 <Text style={styles.itemText}>Item No: 05</Text>
                 <View style={styles.imageGroup}>
-                    <Image
-                        source={AttachIcon}
-                        style={styles.attachIcon}
-                    />
-                    <Image
-                        source={Camera}
-                        style={styles.cameraIcon}
-                    />
+                    <Pressable onPress={pickImage}>
+                        <Image
+                            source={AttachIcon}
+                            style={styles.attachIcon}
+                        />
+                    </Pressable>
+                    <Pressable onPress={cameraImage}>
+                         <Image
+                            source={Camera}
+                            style={styles.cameraIcon}
+                        />
+                    </Pressable>
                 </View>
             </View>
             <View style={styles.midSection}>
-                    <Image
-                    source={productImage}
-                    style={productImageStyle}
-                    />
+                {/* <ScrollView> */}
+                {dataImage.map(item=>
+                    <Pressable onPress={()=>handleDelte(item.key)}>
+                        <Image
+                        source={item.image}
+                        style={productImageStyle}
+                        />
+                    </Pressable>
+                    )}
+                {/* </ScrollView> */}
             </View>
             <View style={styles.footer}>
                 <TextInput
                 style={styles.inputText}
                 placeholder='Enter keyword'
+                onChangeText={SetKeyWord}
                 />
-                <Button Title='Add' style={styles.button}/>
+                <Button Title='Add' style={styles.button} Navigation={handleKeyWord} />
             </View>
-            <View style={styles.keywordView}>
-                <Text style={styles.keyword}>KeyWord</Text>
+            <View style={{flexDirection:'row'}}>
+                <ScrollView horizontal={true}>
+                    {keyWordData.map((item)=>
+                    <Pressable style={styles.keywordView} onPress={()=>handleDelte(item.key)}>
+                        <Text style={styles.keyword}>{item.keyWord}</Text>
+                    </Pressable>
+                    )}
+                </ScrollView>
             </View>
-        </ImageBackground>
+        </LinearGradient>
     </View>
   )
 }
@@ -55,6 +134,7 @@ const styles = StyleSheet.create({
     backgroundImage:{
         width:357,
         height:400,
+        borderRadius:10,
     },
     header:{
         flexDirection:'row',
@@ -82,8 +162,11 @@ const styles = StyleSheet.create({
         borderRadius:10,
         marginTop:14,
         marginLeft:30,
-        justifyContent:'center',
+        justifyContent:'space-between',
+        flexDirection:'row',
         alignItems:'center',
+        flexWrap:'wrap',
+        overflow:'scroll',
     },
     attachIcon:{
         width:35,
