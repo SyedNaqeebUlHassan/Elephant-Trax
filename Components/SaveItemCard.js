@@ -96,7 +96,7 @@ const SaveItemCard = ({productImage,productImageStyle}) => {
                 </View>
             </View>
             <View style={styles.midSection}>
-                {/* <ScrollView> */}
+                <ScrollView>
                 {dataImage.map(item=>
                     <Pressable onPress={()=>handleDelte(item.key)}>
                         <Image
@@ -105,7 +105,7 @@ const SaveItemCard = ({productImage,productImageStyle}) => {
                         />
                     </Pressable>
                     )}
-                {/* </ScrollView> */}
+                </ScrollView>
             </View>
             <View style={styles.footer}>
                 <TextInput
