@@ -41,7 +41,7 @@ const CreatePackageScreen = ({navigation}) => {
                         <Button Navigation={()=>navigation.navigate("Add Item")} Title="Add Items" style={styles.button}/>
                      </View>
                       { itemData.map(item=>
-                            <Pressable onPress={()=>handleDelete(item.key)}>
+                            <Pressable key={item.key} onPress={()=>handleDelete(item.key)}>
                                  <ItemCard LinerStart={[0,0]} LinerEnd={[1,1]} LinerLocation={[0,1]} linerColors={['#F3EEF7','#f3eef766']} keyWord={item.keyWord} backGroundImageStyle={styles.backgroundImageItem} productImage={item.img} productImageStyle={styles.carImage} rightImage={Edit} rightImageStyle={styles.editImage} />          
                             </Pressable>
                         ) } 

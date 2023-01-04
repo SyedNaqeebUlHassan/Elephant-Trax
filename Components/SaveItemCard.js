@@ -8,6 +8,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import * as ImagePicker from 'expo-image-picker';
 import { useDispatch } from 'react-redux'
 import { addItem } from '../Redux/ItemSlider';
+import CrossIcon from '../assets/CrossIcon.png'
 
 const SaveItemCard = ({productImage,productImageStyle}) => {
 
@@ -15,10 +16,11 @@ const SaveItemCard = ({productImage,productImageStyle}) => {
 
     const[keyWord,SetKeyWord]=useState('');
     const [image,SetImage]=useState('');
-    const[dataImage,SetImageData]=useState([{image}])
-    const[keyWordData,SetKeyWordData]=useState([{keyWord:"KeyWord"}]);
+    const[dataImage,SetImageData]=useState([{image}]);
+    const[keyWordData,SetKeyWordData]=useState([{keyWord}]);
+    const [show,SetShow]=useState(false);
 
-    const pickImage =async() => {
+    const pickImage =async() => { //Pcik Image Function
         let result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.All,
           allowsEditing: true,
@@ -30,10 +32,11 @@ const SaveItemCard = ({productImage,productImageStyle}) => {
           }
           SetImageData((prevState)=>[{image:result.assets,key:Math.random()},...prevState]);
           SetImage(result.assets)
+          SetShow(true);
           
-      }
+      };
       
-    const cameraImage=async()=>{
+    const cameraImage=async()=>{//Camera Image Fucntion
           let result = await ImagePicker.launchCameraAsync({
           mediaTypes: ImagePicker.launchCameraAsync.All,
           allowsEditing: true,
@@ -45,30 +48,35 @@ const SaveItemCard = ({productImage,productImageStyle}) => {
           }
           SetImageData((prevState)=>[{image:result.assets,key:Math.random()},...prevState]);
           SetImage(result.assets)
+          SetShow(true);
 
-    }
 
-    const handleDelte=(key)=>{
+    };
+
+    const handleDelteImage=(key)=>{
         SetImageData((prevState)=>{
             return prevState.filter((item)=>item.key!==key)
         })
+    };
+
+    const handleDeleteKeyword=(key)=>{
         SetKeyWordData((prevState)=>{
             return prevState.filter((item)=>item.key!==key)
         })
-    }
+    };
 
     const handleKeyWord=()=>{
-        SetKeyWordData((prevState)=>[{keyWord:keyWord,key:Math.random()},...prevState])
-    }
+        SetKeyWordData((prevState)=>[{keyWord:keyWord,key:Math.random()},...prevState]);
+    };
 
-    const handleReduxData=()=>{
+    const handleReduxData=()=>{// Redux Data
         dispatch(
             addItem({
                 newImage:image,
                 newKeyWord:keyWord,
             })
         )
-    }
+    };
 
   return (
     <View style={styles.container}>
@@ -81,7 +89,7 @@ const SaveItemCard = ({productImage,productImageStyle}) => {
             <View style={styles.header}>
                 <Text style={styles.itemText}>Item No: 05</Text>
                 <View style={styles.imageGroup}>
-                    <Pressable onPress={pickImage}>
+                    <Pressable onPress={pickImage}>                  
                         <Image
                             source={AttachIcon}
                             style={styles.attachIcon}
@@ -97,14 +105,24 @@ const SaveItemCard = ({productImage,productImageStyle}) => {
             </View>
             <View style={styles.midSection}>
                 <ScrollView>
-                {dataImage.map(item=>
-                    <Pressable onPress={()=>handleDelte(item.key)}>
+                {  dataImage.map(item=>
+                <View key={item.key} >
+                    <View>
                         <Image
-                        source={item.image}
-                        style={productImageStyle}
+                            source={item.image}
+                            style={productImageStyle}
+                            />
+                    </View>
+                    <Pressable style={{position:'absolute'}} onPress={()=>handleDelteImage(item.key)}>
+                        {show &&
+                        <Image
+                            source={CrossIcon}
+                            style={styles.imageCross}
                         />
+                        }
                     </Pressable>
-                    )}
+                </View>
+                )}
                 </ScrollView>
             </View>
             <View style={styles.footer}>
@@ -117,8 +135,8 @@ const SaveItemCard = ({productImage,productImageStyle}) => {
             </View>
             <View style={{flexDirection:'row'}}>
                 <ScrollView horizontal={true}>
-                    {keyWordData.map((item)=>
-                    <Pressable style={styles.keywordView} onPress={()=>handleDelte(item.key)}>
+                    { keyWordData.map((item)=>
+                    <Pressable key={item.key} style={styles.keywordView} onPress={()=>handleDeleteKeyword(item.key)}>
                         <Text style={styles.keyword}>{item.keyWord}</Text>
                     </Pressable>
                     )}
@@ -235,6 +253,11 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         marginTop:200,
-
+    },
+    imageCross:{
+        width:14,
+        height:14,
+        marginLeft:65,
+        marginTop:10,
     }
 })

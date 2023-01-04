@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 export const item=createSlice({
     name:'item',
-    initialState:[{key:1,img:'adas',keyWord:''}],
+    initialState:[],
     reducers:{
         addItem:(state,action)=>{
             const newItem={
